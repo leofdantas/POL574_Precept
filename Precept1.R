@@ -1,5 +1,5 @@
 ## POL 574: Quantitative Analysis IV
-## Precept 1: Introduction to R Programming
+## Precept 1: Introduction to R Programming and a Little Bit of Text Analysis
 ## Date: January 30, 2025
 ## Author: Christian Baehr
 
