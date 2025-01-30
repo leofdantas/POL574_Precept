@@ -185,7 +185,7 @@ library(readtext)
 
 ## 4.2) load text data into R using readtext() and corpus(). You can also
 ## pass R data frames to corpus().
-setwd("/Users/christianbaehr/Documents/GitHub/POL504_precept_2023/")
+setwd("/Users/christianbaehr/Documents/GitHub/POL_574_SP25/")
 
 
 reviews.raw <- readtext("data/reviews.csv")
@@ -246,7 +246,7 @@ textplot_wordcloud(reviews.pos.cleandfm, min_count = 5, random_order = F, rotati
 
 ## last
 getwd() # locate your current directory
-setwd("Documents/Github/POL504_precept_2023/") # change the working directory
+setwd("/Users/christianbaehr/Documents/GitHub/POL_574_SP25/") # change the working directory
 setwd("../") # move one directory back
 
 ls() # objects in the global environment
