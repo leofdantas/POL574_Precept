@@ -26,6 +26,8 @@ setwd("/Users/christianbaehr/Documents/GitHub/POL_574_SP25/")
 #install.packages("pacman")
 #install.packages("devtools")
 #devtools::install_github("matthewjdenny/preText")
+# devtools package required to install quanteda from Github 
+#remotes::install_github("quanteda/quanteda.textmodels") 
 
 ## use pacman instead of loading individual libraries
 pacman::p_load(ggplot2, 
@@ -105,6 +107,16 @@ topfeatures(reviews.dfm_weighted[nrow(reviews.dfm_weighted),]) # why is ordering
 feature <- dfm_select(reviews.dfm, pattern = "love") # subset dfm to single feature
 occurrences <- feature@x # extract the non-zero rows for "love"
 
+pos <- dfm_subset(reviews.dfm, sentiment==1)
+neg <- dfm_subset(reviews.dfm, sentiment==0)
+
+bad_pos <- dfm_select(pos, "bad")
+bad_neg <- dfm_select(neg, "bad")
+
+bad_pos_rate <- sum(as.matrix(bad_pos)[ , 1 ]) /nrow(bad_pos)
+bad_neg_rate <- sum(as.matrix(bad_neg)[ , 1 ]) /nrow(bad_neg)
+
+bad_pos_rate - bad_neg_rate
 
 #######################################
 
@@ -132,7 +144,7 @@ reviews.colloc.3 <- textstat_collocations(reviews, size = 3)
 
 ## all n-grams between two and four
 reviews.colloc.2_4 <- textstat_collocations(reviews, size = 2:4)
-
+reviews.colloc.2_4[1:10 , ]
 
 ## 2.3) Regular Expressions ----------------------------------------------------
 
