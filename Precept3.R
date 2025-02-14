@@ -15,12 +15,13 @@
 ################################################# Precept 3: Processing Text in R
 
 ## working directory
-setwd("/Users/christianbaehr/Documents/GitHub/POL504_precept_2023/")
+setwd("/Users/christianbaehr/Documents/GitHub/POL_574_SP25/")
 
 ## load packages
 #devtools::install_github("quanteda/quanteda.corpora")
 pacman::p_load(dplyr, ggplot2, gutenbergr, preText, quanteda, quanteda.corpora, 
                quanteda.textplots, quanteda.textstats, readtext)
+
 
 ## load movie reviews
 reviews <- readtext("data/reviews.csv", text_field = "review") |>
@@ -62,7 +63,7 @@ k <- 44
 b <- 0.47
 
 k * Tee^b
-
+M
 
 ## 1.2) Zipf's Law ---------------------------------------------------------
 
@@ -135,6 +136,7 @@ reviews.3 <- dfm_subset(reviews.dfm, subset = 1:nrow(reviews.dfm) %in% indices)
 ## compute the COSINE similarity of the documents
 textstat_simil(reviews.3, method = c("cosine")) # what do higher values mean?
 
+#textstat_dist()
 
 #######################################
 
