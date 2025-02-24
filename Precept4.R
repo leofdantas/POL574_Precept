@@ -15,7 +15,7 @@
 
 
 ## working directory
-setwd("/Users/christianbaehr/Documents/GitHub/POL_574_SP25//")
+setwd("/Users/christianbaehr/Documents/GitHub/POL_574_SP25/")
 
 ## load packages
 #install.packages("remotes")
@@ -199,5 +199,7 @@ cor(speech_sent$nlp_positivity, speech_sent$harvard_positivity)
 
 ## What might be causing this?
 
+sotu_positivity <- as.numeric(sotu[,"positive"] - sotu[,"negative"]) /as.numeric(sotu[,"positive"] + sotu[,"negative"])
 
+cor(speech_sent$nlp_positivity, sotu_positivity)
 
