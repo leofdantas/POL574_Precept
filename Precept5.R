@@ -37,6 +37,9 @@ news_corpus <- news_data |>
   corpus(text_field = "headline") |> 
   corpus_subset(category %in% c("SPORTS", "ARTS"))
 
+news_dfm <- news_data$headline |>
+  tokens() |>
+  dfm()
 
 ## 1.1) IN CLASS ACTIVITY ------------------------------------------------------
 
@@ -46,7 +49,19 @@ news_corpus <- news_data |>
 
 ## Hint: P(B|A) ~ P(A|B) * P(B)
 
+arts <- news_corpus |>
+  corpus_subset(category=="ARTS") |>
+  tokens() |>
+  dfm()
 
+
+P_B <- length(news_corpus[news_corpus$category == "ARTS"]) / length(news_corpus)
+
+
+
+P_A__B <- sum( dfm_select(arts, "artist", valuetype="regex") ) / sum( ntoken(arts) )
+
+P_A__B * P_B
 
 ## 2) Naive Bayes with quanteda ------------------------------------------------
 
@@ -243,7 +258,6 @@ cat(sprintf("OOS corr. for domain-specific: %s \nOOS corr. for off-the-shelf: %s
 
 
 ## what does this tell us about using non-domain specific models for prediction?
-
 
 
 
