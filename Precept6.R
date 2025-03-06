@@ -100,14 +100,6 @@ predictions <- cbind.data.frame(y.test, pred.ridge, error, news_samp$text[-train
 
 ##### which terms do we think are more "WEIRD" and less "GOOD"? #####
 
-extract.coef <- function(term) {
-  allbetas <- as.matrix(coef(cvout.ridge))
-  coef.loc <- grep(term, rownames(allbetas))
-  beta <- allbetas[coef.loc, ]
-  return(beta)
-}
-
-extract.coef("dino")
 
 
 ## 2.1) IN CLASS ACTIVITY ------------------------------------------------------
