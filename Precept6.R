@@ -27,8 +27,10 @@ pacman::p_load(dplyr, glmnet, quanteda, ROCR, caret)
 news_data <- readRDS("data/news_data.rds")
 
 ## let's work with 2 categories
-news_samp <- news_data %>% filter(category %in% c("WEIRD NEWS", "GOOD NEWS")) %>% 
-  select(headline, category) %>% setNames(c("text", "class"))
+news_samp <- news_data %>% 
+  filter(category %in% c("WEIRD NEWS", "GOOD NEWS")) %>% 
+  select(headline, category) %>% 
+  setNames(c("text", "class"))
 
 
 ## get a sense of how the text looks
@@ -48,7 +50,8 @@ prop.table(table(news_samp$class))
 news_dfm <- tokens(news_samp$text, remove_punct = T) %>% 
   dfm() %>% 
   dfm_remove(stopwords("en")) %>% 
-  dfm_wordstem() %>% convert("matrix")
+  dfm_wordstem() %>% 
+  convert("matrix")
 dim(news_dfm)
 
 

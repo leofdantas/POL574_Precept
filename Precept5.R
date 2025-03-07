@@ -214,7 +214,7 @@ test.set$party
                     rescaling = "none", level = 0.95, se.fit = T))
 
 ## plot the predicted values for the test texts
-textplot_scale1d(pred_ws)
+textplot_scale1d(pred_ws, doclabels=test.set$party)
 
 ## what seems to be the issue here?
 
