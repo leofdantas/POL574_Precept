@@ -31,7 +31,7 @@ pacman::p_load(dplyr, glmnet, quanteda, caret, randomForest, mlbench, pbapply,
 
 set.seed(123)
 
-generate <- function(n=10) {
+generate <- function(n) {
   party <- sample(c("D", "R"), n, replace=T)
   immigration <- rnorm(n, ifelse(party=="D", 0.1, 0.9), 0.5)
   trade <- rnorm(n, ifelse(party=="D", 0.4, 0.8), 0.3)
@@ -46,6 +46,17 @@ plot(pols$immigration, pols$trade, col=ifelse(pols$party=="D", "blue", "red"), p
 ## they are in given their position on immigration and trade issues. Predict their
 ## party by identifying the three senators closest to the freshman, by Euclidean distance.
 freshman <- c(rnorm(1, 0.6, 0.3), rnorm(1, 0.6, 0.3))
+
+## SOLUTION
+
+eucl <- sqrt((pols$immigration - freshman[1])^2 +  (pols$trade - freshman[2])^2  )
+
+pols$distance <- eucl
+
+pols <- pols %>%
+  arrange(distance)
+
+table(pols$party[1:7])
 
 
 
@@ -104,6 +115,10 @@ trctrl <- trainControl(method = "none") #none: only fits one model to the entire
 ## 2.4) Train Model ------------------------------------------------------------
 
 ## for modeling options, see: https://topepo.github.io/caret/available-models.html
+
+#train_x <- scale(train_x)
+#mean(train_x[,1])
+#sd(train_x[,1])
 
 ## svm - linear
 svm_mod_linear <- train(x = train_x,
@@ -223,4 +238,7 @@ varImpPlot(rf.base, n.var = 10, main = "Variable Importance")
 
 predict_test <- predict(rf.base, newdata = test_x)
 confusionMatrix(data = predict_test, reference = test_y)
+
+
+
 
