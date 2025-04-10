@@ -76,6 +76,11 @@ dim(SOTU_pca$rotation)
 ## b) What should the correlation be between the first two components?
 
 
+sort(abs(SOTU_pca$rotation[ , 1]), decreasing = T)[1:10]
+
+
+
+
 ## 1.4) visualizing principal components ---------------------------------------
 
 ## format the components
