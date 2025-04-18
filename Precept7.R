@@ -135,7 +135,7 @@ svm_linear_cmat
 coefs <- svm_mod_linear$finalModel@coef[[1]]
 mat <- svm_mod_linear$finalModel@xmatrix[[1]]
 
-temp <- t(coefs %*% mat) 
+temp <- t(coefs %*% mat)
 head(temp[order(temp[,1]),], 10)
 head(temp[order(-temp[,1]),], 10)
 

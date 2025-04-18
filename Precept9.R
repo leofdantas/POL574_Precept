@@ -14,7 +14,7 @@
 ### Precept 9: Unsupervised Text Analysis II -----------------------------------
 
 ## working directory
-setwd("/Users/christianbaehr/Documents/GitHub/POL_574_SP25//data/")
+setwd("/Users/christianbaehr/Documents/GitHub/POL_574_SP25/data/")
 
 ## package dependencies
 pacman::p_load(ldatuning,
@@ -72,7 +72,7 @@ blm_tweets_sum <- blm_tweets %>%
 blm_tweets_sum$text <- stringi::stri_trans_general(blm_tweets_sum$text, "latin-ascii")
 
 ## solitary letters
-blm_tweets_sum$text <- gsub("[A-z] ", " ", blm_tweets_sum$text)
+blm_tweets_sum$text <- gsub(" [A-z] ", " ", blm_tweets_sum$text)
 
 ## create a dfm with dates as rows
 blm_dfm <- tokens(blm_tweets_sum$text, remove_punct = T, remove_numbers = T, remove_symbols = T) %>% 
@@ -150,7 +150,7 @@ blm_top_terms %>%
   facet_wrap(~ topic, scales = "free") 
 
 ## largest differences between topics 2 and 1
-blm_topics %>%
+blm_topics %>% 
   mutate(topic = paste0("topic", topic)) %>%
   filter(topic %in% c("topic1", "topic2")) %>%
   spread(topic, beta) %>%
@@ -233,7 +233,7 @@ plot(prep,
      blog_stm, 
      topics = c(1,2), 
      method = "continuous", 
-     xaxt = "n", 
+     #xaxt = "n", 
      xlab = "Date")
 
 ## topic prevalence by party
